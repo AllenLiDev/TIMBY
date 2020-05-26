@@ -55,9 +55,9 @@ export default function ImgMediaCard(props) {
     fetchMediaForTour(props.id)
       .then(media => {
         const imagePaths = [];
-        media.forEach(object => {
-          imagePaths.push(object.src);
-        });
+        for (const obj of media) {
+          imagePaths.push(obj.src)
+        }
         setTourImages(imagePaths);
       })
       .catch(error => console.log(error));
