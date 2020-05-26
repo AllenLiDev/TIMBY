@@ -1,46 +1,79 @@
-# React + Express No-Fluff Boilerplate
+# TIMBY
 
-A boilerplate project for anyone interested in making a project that uses React and Express.
+TIMBY (Tour In My Back Yard) is a progressive web app (PWA) that connects local tour guides with travellers who are looking for a more authentic travel experience.
 
-This repository is a bootleg of @NimaBoscarino's [React Rails Boilerplate](https://github.com/NimaBoscarino/react-rails-boilerplate). It uses the same React app, but replaces the Rails server with an Express server.
+Have you ever wondered what locals do in their own city for fun? With TIMBY, our goal is to create lasting travel memories for tourists by connecting them with locals and at the same time for locals to share their secret hot-spots while making income on the side.
 
-Note! This boilerplate has _no fluff_! That means that there's nothing set up for you to do authentication stuff, there's no Redux stuff, and there's no React Router stuff. On the Express end, there is no session storage or database connection.
+With TIMBY, locals can create and list their own tours on the app. Using the Google Maps API, tourists can browse for tours and request to book a tour of their choice. The tour guide has the option to confirm or decline any booking request. Once a tour is completed, a tourist can leave a rating and feedback for a tour.
 
-The main important bit is that the React project has `proxy` set to `localhost:8080` in the `package.json` file, and that the Express app listens to port 8080 in `server.js`. Take a look!
+As a PWA, TIMBY supports push notifications and cache-first asset loading for a native-app-like user experience.
 
-You can (and perhaps should) rename the directories `express-back-end` and `react-front-end` if you want-- The name doesn't matter.
+TIMBY was collaboratively built with [Dexter](https://github.com/dexterchan94/) and [Jason](https://github.com/jpark-dev/)
 
-## Running the projects
+## Images
 
-You need **TWO** terminal windows/tabs for this (or some other plan for running two Node processes).
+<img style="float: left" width="400" src="https://github.com/allenlidev/TIMBY/blob/master/screenshots/timby-search.jpg?raw=true">
+<img style="float: left" width="400" src="https://github.com/allenlidev/TIMBY/blob/master/screenshots/timby-listings-confirm.jpg?raw=true">
+<img style="float: left" width="400" src="https://github.com/allenlidev/TIMBY/blob/master/screenshots/timby-booking-details.jpg?raw=true">
+<img style="float: left" width="400" src="https://github.com/allenlidev/TIMBY/blob/master/screenshots/timby-feedback.jpg?raw=true">
+<img style="float: left" width="400" src="https://github.com/allenlidev/TIMBY/blob/master/screenshots/timby-notifications.jpg?raw=true">
+<img style="float: left" width="400" src="https://github.com/allenlidev/TIMBY/blob/master/screenshots/timby-push-notifications.jpg?raw=true">
 
-In one terminal, `cd` into `react-front-end`. Run `npm install` or `yarn` to install the dependencies. Then run `npm start` or `yarn start`, and go to `localhost:3000` in your browser.
 
-In the other terminal, `cd` into `express-back-end`. Run `npm install` or `yarn` to install the dependencies, then `npm start` or `yarn start` to launch the server.
+## Dependencies
 
-In the browser, you can click on the button and see the data get loaded.
+### Back-End
 
-If this doesn't work, please message me!
+* node
+* express
+* body-parser
+* CORS
+* dotenv
+* pg
+* web-push
 
-## Next steps
+### Front-End
 
-From here, you can start working on your project!
+* react
+* axios
+* material-ui
+* cra-append-sw
 
-As soon as the dependencies are installed, your Express server can serve JSON and static assets (like images) in response to API calls from the React app. You can get started on developing your React app, routing plan, etc. right away! Any request that isn't handled by React is passed on to the Express server. That means that you can call a route like `/api/users` from React using `fetch`, `axios`, or something else, and Express will receive it as though they originated from the same app. For routing, best practice is to namespace all of your data routes to `/api`, so that they don't clash with other routing schemes, like React Router.
 
-At some point, you'll likely want to install and configure a database driver for Postgres or MongoDB-- Refer to past projects for hints on how to do this.
+## Development Dependencies
 
-And don't forget to update the README!
+* cypress
+* jest
+* react-test-renderer
+* testing-library
+* serve
 
-## Example Projects
 
-You might want to look at examples of projects that have used this boilerplate for hints on how to extend it. Here are a few:
+## Getting Started
 
-* [Later Cart](https://github.com/bonitac/later-cart)
-* [Buddi.io](https://github.com/Danny-Tran/buddi.io)
+### Back-End
 
-If you'd like your project added to the list, please shoot me a message.
+1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
+2. Update the `.env` with the database and vapid key information
+3. Install dependencies: `npm install`
+4. Reset database: `npm run resetdb`
+5. Run the server: `npm start`
+6. The back-end API is now running and can be accessed via `http://localhost:8080/`
+8. Visit `http://localhost:8080/`
 
-## Contact
+### Front-End
+1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
+2. Update the `.env` with the back-end API URL `http://localhost:8080/` and vapid key information
+3. Install dependencies: `npm install`
+4. Build the production version: `npm run build`
+5. Serve the front end: `serve -s build`
+6. Visit the URL provided by serve (e.g. `http://localhost:5000`)
+7. Sign in as a user by typing in the dev tools console: `localStorage.setItem('userID', 7)`
+8. Open the Application tab of the dev tools and click skipWaiting to activate the new service worker
+9. Refresh the page
 
-Please contact me on Slack (@garrettgsb) or Nima at `nima@lighthouselabs.com` if you have any questions, requests, or feedback, or post an issue to this repo. If you are using the boilerplate, I'd love to hear from you as well!
+
+## Testing
+
+A simple end-to-end testing suite for the front-end was written using Cypress.
+```npm run cypress```
